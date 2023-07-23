@@ -1,0 +1,28 @@
+model: WAE
+architecture: CWAE_MNIST 
+z_sampler: gaus
+z_dim: 6
+y_dim: 6
+
+lr: 1e-3
+beta1: 0.5
+lr_adv: 1e-3
+beta1_adv: 0.5
+lambda: 10.0
+lambda_hsic: 100.0
+
+lr_scheduler: 
+# epoch: 100
+epoch: 200
+
+data:
+  _target_: src.datasets.MNIST_pl
+  data_dir: ${oc.env:HOME}/data/MNIST
+  batch_size: 100
+
+gen_data:
+  _target_: src.datasets.MNIST
+  data_home: ${oc.env:HOME}/data/MNIST
+  train: False
+
+checkpoint_path: pretrain_z6.ckpt

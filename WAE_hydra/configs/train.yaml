@@ -1,0 +1,12 @@
+hydra:
+  run:
+    # dir: outputs/${now:%Y-%m-%d_%H-%M-%S}
+    dir: outputs/${lname:}/${now:%Y-%m-%d_%H-%M-%S}
+
+defaults:
+  - _self_
+  - train_info: train_template.yaml
+  - path_info: path_template.yaml
+
+seed: 255
+work_dir: ${hydra:runtime.cwd}

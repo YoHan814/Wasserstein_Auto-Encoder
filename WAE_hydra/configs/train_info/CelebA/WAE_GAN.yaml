@@ -1,0 +1,25 @@
+model: WAE
+architecture: WAE_GAN_CelebA
+z_sampler: gaus
+z_dim: 64
+
+lr: 1e-3
+beta1: 0.5
+lr_adv: 1e-3
+beta1_adv: 0.5
+lambda: 100.0
+
+lr_scheduler: manual
+epoch: 20
+
+data:
+  _target_: src.datasets.CelebA_pl
+  data_dir: ${oc.env:HOME}/data/CelebA
+  batch_size: 100
+
+gen_data:
+  _target_: src.datasets.MNIST
+  data_home: ${oc.env:HOME}/data/CelebA
+  train: False
+
+checkpoint_path: 
